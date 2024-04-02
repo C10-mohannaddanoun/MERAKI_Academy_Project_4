@@ -86,15 +86,18 @@ const login =(req,res)=>{
 // *****************************************************************************************************
 
 const addFav = (req,res)=>{
-const {id}= req.params
+const id= req.token.UserId
 const{Fav}=req.body
 
 userModel
 .findByIdAndUpdate({_id:id},{$push:{fav:Fav}},{new:true})
 .then((result)=>{
+    console.log(result);
     res.status(200).json({
         success:true,
         message:`add to fav is done`
+        
+        
     })
 }).catch((err)=>{
     res.status(500).json({
@@ -108,5 +111,32 @@ userModel
 
 }
 
-module.exports = {register,login,addFav}
+// ************************************************************************************************************
+const removeFav = (req,res)=>{
+    const id= req.token.UserId
+    const{Fav}=req.body
+    
+    userModel
+    .findByIdAndUpdate({_id:id},{$pull:{fav:Fav}},{new:true})
+    .then((result)=>{
+        console.log(result);
+        res.status(200).json({
+            success:true,
+            message:`Product removed from favorites`
+            
+            
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:`server error`,
+            err:err.message
+        })
+    })
+    
+    
+    
+    }
+
+module.exports = {register,login,addFav,removeFav}
 
