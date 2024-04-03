@@ -56,7 +56,7 @@ const login =(req,res)=>{
             const payLoad ={
                 UserId : result._id,
                 UserName:result.userName,
-                Role:result.role
+                role:result.role
             }
             const options = {
                 expiresIn: "60m",
