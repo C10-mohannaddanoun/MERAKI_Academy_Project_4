@@ -116,5 +116,43 @@ const updateProduct = (req, res) => {
       });
     });
 };
+// *****************************************************************************************************************
+const deleteProduct=(req,res)=>{
 
-module.exports = { addProduct, getByCategory, productById,updateProduct };
+  const {ID}=req.params
+
+  productModel
+  .findByIdAndDelete(ID)
+
+.then((result) => {
+      if (!result) {
+        res.status(404).json({
+          success: false,
+          message: `product not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `product deleted`,
+        product: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+
+
+
+
+
+
+
+
+
+
+}
+module.exports = { addProduct, getByCategory, productById,updateProduct,deleteProduct};
