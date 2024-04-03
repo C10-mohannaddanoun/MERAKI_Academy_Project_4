@@ -88,5 +88,33 @@ const productById = (req, res) => {
       });
     });
 };
+// *************************************************************************************************************
 
-module.exports = { addProduct, getByCategory,productById };
+const updateProduct = (req, res) => {
+  const {Id}  = req.params;
+
+  productModel
+    .findByIdAndUpdate({_id: Id }, req.body, { new: true })
+    .then((result) => {
+      if (!result) {
+        res.status(404).json({
+          success: false,
+          message: `product not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `product updated`,
+        product: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+
+module.exports = { addProduct, getByCategory, productById,updateProduct };
