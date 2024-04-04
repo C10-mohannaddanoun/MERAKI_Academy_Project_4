@@ -12,7 +12,7 @@ const register = (req, res) => {
     email,
     password,
     fav,
-    role,
+    role:"660775792a266798b770758f",
   });
 
   newUser
