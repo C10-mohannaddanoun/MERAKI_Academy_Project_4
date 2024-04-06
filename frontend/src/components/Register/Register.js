@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Button, Input, message } from "antd";
-
+import { Button, Input, message, Space } from "antd";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -36,6 +35,7 @@ const Register = () => {
     messageApi.open({
       type: "loading",
       content: "Loading...",
+      duration: 0.5,
     });
 
     axios
@@ -71,14 +71,49 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div
+      className="Register"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 100,
+      }}
+    >
       {contextHolder}
-      <Input placeholder="User Name" onChange={chUserName} />
-      <Input placeholder="Age" onChange={chAge} />
-      <Input placeholder="Phone Number" onChange={chPhoneNumber} />
-      <Input placeholder="Email" onChange={chEmail} />
-      <Input type="password" placeholder="Password" onChange={chPassword} />
-      <Button type="primary" onClick={sendReq}>
+
+      <Input
+        style={{ maxWidth: 200, marginBottom: 10 }}
+        placeholder="User Name"
+        onChange={chUserName}
+      />
+      <Input
+        style={{ maxWidth: 200, marginBottom: 10 }}
+        placeholder="Age"
+        onChange={chAge}
+      />
+      <Input
+        style={{ maxWidth: 200, marginBottom: 10 }}
+        placeholder="Phone Number"
+        onChange={chPhoneNumber}
+      />
+      <Input
+        style={{ maxWidth: 200, marginBottom: 10 }}
+        placeholder="Email"
+        onChange={chEmail}
+      />
+      <Input
+        style={{ maxWidth: 200, marginBottom: 10 }}
+        type="password"
+        placeholder="Password"
+        onChange={chPassword}
+      />
+      <Button
+        style={{ maxWidth: 250, marginBottom: 10 }}
+        type="primary"
+        onClick={sendReq}
+      >
         Register
       </Button>
     </div>
