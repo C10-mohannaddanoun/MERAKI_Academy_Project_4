@@ -5,6 +5,7 @@ import Nav from "./components/NavBar/Nav";
 import { Button, Space, Input } from "antd";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
+import Home from "./components/Home/Home";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -12,6 +13,7 @@ const App = () => {
   return (
     <div className="App">
       <Nav />
+      <Home/>
       <Routes>
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/Login" element={<Login setToken={setToken} />} />
