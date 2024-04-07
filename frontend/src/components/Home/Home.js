@@ -1,12 +1,15 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 const { Meta } = Card;
+
 
 const Home = () => {
   const [Categoryes, setCategoryes] = useState([]);
   const [message, setMessage] = useState("");
+  const navigate =useNavigate()
 
   useEffect(() => {
     axios
@@ -26,7 +29,7 @@ const Home = () => {
       {Categoryes.length &&
         Categoryes.map((oneCategory, index) => {
           return (
-            <div>
+            <div key={index}>
               <Card
                 hoverable
                 style={{
@@ -37,6 +40,9 @@ const Home = () => {
                   <img
                    
                     src={oneCategory.img}
+                    onClick={(_id)=>{
+                      navigate(`/productsByCategory/${oneCategory._id}`)
+                    }}
                   />
                 }
               >
