@@ -1,9 +1,13 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Button, Input, message, Space } from "antd";
+import { tokenContext,isLoggedInContext } from "../../App";
 
-const Login = ({ setToken }) => {
+
+const Login = () => {
+  const {setToken}=useContext(tokenContext)
+  const {isLoggedIn,setIsLoggedIn}=useContext(isLoggedInContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message2, setMessage2] = useState("");
@@ -29,6 +33,8 @@ const Login = ({ setToken }) => {
         const token = result.data.token;
         setToken(token);
         localStorage.setItem("token", token);
+        setIsLoggedIn(true)
+        localStorage.setItem("isLoggedIn",isLoggedIn)
         setMessage2(result.data.message);
         setTimeout(() => {
           messageApi.open({

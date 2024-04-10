@@ -38,14 +38,15 @@ const Products = () => {
 
 
   return (
-    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gridGap: '10px', padding:15}}>
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 4fr))', gridGap: '10px', padding:15}}>
       {Products.length===0 ?<h1>no products yet</h1> :
         Products.map((oneProduct, index) => {
           return (
-            <div  key={index}>
+            <div style={{padding:15}} key={index}>
               <Card
                 style={{
                     width: 300,
+                    padding:20
                   }}
                   cover={
                     <img

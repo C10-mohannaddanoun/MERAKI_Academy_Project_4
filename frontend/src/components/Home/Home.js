@@ -40,7 +40,7 @@ const Home = () => {
                   <img
                    
                     src={oneCategory.img}
-                    onClick={(_id)=>{
+                    onClick={()=>{
                       navigate(`/productsByCategory/${oneCategory._id}`)
                     }}
                   />
