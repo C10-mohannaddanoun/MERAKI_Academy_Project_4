@@ -1,17 +1,17 @@
 import React from "react";
 import axios from "axios";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { Button, Input, message, Space } from "antd";
-import { tokenContext,isLoggedInContext } from "../../App";
-
+import { tokenContext, isLoggedInContext } from "../../App";
 
 const Login = () => {
-  const {setToken}=useContext(tokenContext)
-  const {isLoggedIn,setIsLoggedIn}=useContext(isLoggedInContext)
+  const { setToken } = useContext(tokenContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(isLoggedInContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message2, setMessage2] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
+  
 
   const chEmail = (e) => {
     setEmail(e.target.value);
@@ -33,8 +33,8 @@ const Login = () => {
         const token = result.data.token;
         setToken(token);
         localStorage.setItem("token", token);
-        setIsLoggedIn(true)
-        localStorage.setItem("isLoggedIn",isLoggedIn)
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", true);
         setMessage2(result.data.message);
         setTimeout(() => {
           messageApi.open({
@@ -83,6 +83,7 @@ const Login = () => {
         style={{ maxWidth: 250, marginBottom: 10 }}
         type="primary"
         onClick={sendReq}
+       
       >
         Login
       </Button>
