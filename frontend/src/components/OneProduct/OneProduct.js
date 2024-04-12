@@ -46,6 +46,7 @@ const OneProduct = () => {
       )
       .then((Result) => {
         console.log(Result);
+        console.log(token);
       })
       .catch((err) => {
         console.log(err);
@@ -53,6 +54,27 @@ const OneProduct = () => {
         console.log(token);
       });
   };
+
+
+  const DeleteProduct = () => {
+    axios.delete(`http://localhost:5000/product/deleteProduct/${id}`,{
+      headers: { Authorization: `Bearer  ${token}` }
+    })
+    .then((Result) => {
+      console.log(Result);
+      
+    })
+    .catch((err) => {
+      console.log(err);
+      console.log(err.response.data.message);
+      
+    });
+
+
+
+
+
+  }
 
   useEffect(() => {
     axios
@@ -105,7 +127,7 @@ const OneProduct = () => {
             Add to Fav
           </Button>
           <Button
-            onClick={DeleteFav}
+            onClick={DeleteProduct}
             style={{ marginLeft: 15 }}
             variant="solid"
             colorScheme="blue"
