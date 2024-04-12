@@ -11,7 +11,7 @@ const userRouter = express.Router()
 userRouter.post("/register",register )
 userRouter.post("/Login",login)
 userRouter.put("/Fav",authentication,addFav)
-userRouter.delete("/Fav",authentication,removeFav)
+userRouter.put("/deleteFav",authentication,removeFav)
 
 
 

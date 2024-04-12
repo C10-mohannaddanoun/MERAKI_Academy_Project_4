@@ -25,7 +25,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gridGap: '10px'}}>
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gridGap: '10px', margin:20}}>
       {Categoryes.length &&
         Categoryes.map((oneCategory, index) => {
           return (

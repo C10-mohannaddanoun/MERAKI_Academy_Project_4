@@ -46,7 +46,9 @@ const Nav = () => {
           >
             Home
           </Link>
+          <Link>
           <HeartFilled />
+          </Link>
           <Link
           onClick={Logout}
             to="/user/Login"

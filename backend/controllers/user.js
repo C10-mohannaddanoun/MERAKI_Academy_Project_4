@@ -97,6 +97,7 @@ const addFav = (req, res) => {
       res.status(200).json({
         success: true,
         message: `add to fav is done`,
+        added:result
       });
     })
     .catch((err) => {
