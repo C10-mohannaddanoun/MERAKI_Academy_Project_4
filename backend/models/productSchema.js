@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
     color: { type: String},
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" ,required: true },
     category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" ,required: true },
+    
 });
 
 

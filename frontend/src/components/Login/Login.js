@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { Button, Input, message, Space } from "antd";
 import { tokenContext, isLoggedInContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { setToken } = useContext(tokenContext);
@@ -11,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message2, setMessage2] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate =useNavigate()
   
 
   const chEmail = (e) => {
@@ -21,21 +23,26 @@ const Login = () => {
   };
 
   const sendReq = () => {
+    
     messageApi.open({
       type: "loading",
       content: "Loading...",
       duration: 0.5,
     });
+   
     axios
       .post("http://localhost:5000/user/Login", { email, password })
       .then((result) => {
         console.log(result);
+        console.log(result.data.fav);
         const token = result.data.token;
         setToken(token);
         localStorage.setItem("token", token);
         setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", true);
         setMessage2(result.data.message);
+        
+        
         setTimeout(() => {
           messageApi.open({
             type: "success",
@@ -43,6 +50,7 @@ const Login = () => {
             duration: 3,
           });
         }, 500);
+        navigate("/Home")
       })
       .catch((err) => {
         console.log(err);
@@ -55,8 +63,9 @@ const Login = () => {
         }, 500);
       });
   };
-
+  
   return (
+    <div style={{alignItems:"center" ,justifyContent:"center"}}>
     <div
       className="Login"
       style={{
@@ -64,7 +73,16 @@ const Login = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 100,
+        margin: 100,
+        border:"solid",
+        height:"400px",
+        width:"500px",
+        marginLeft:"400px",
+        marginTop:"150px",
+        marginBottom:"100px",
+        backgroundColor:"ButtonShadow",
+        borderRadius:"30px",
+        padding:"100px"
       }}
     >
       {contextHolder}
@@ -87,6 +105,7 @@ const Login = () => {
       >
         Login
       </Button>
+    </div>
     </div>
   );
 };

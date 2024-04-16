@@ -64,6 +64,7 @@ const getByCategory = (req, res) => {
 // *************************************************************************************************************
 const productById = (req, res) => {
   const { id } = req.params;
+  
   productModel
     .findById({ _id: id })
     .then((result) => {
@@ -76,7 +77,7 @@ const productById = (req, res) => {
         res.status(200).json({
           succsses: true,
           message: `product by id`,
-          Product: result,
+          Product:result
         });
       }
     })

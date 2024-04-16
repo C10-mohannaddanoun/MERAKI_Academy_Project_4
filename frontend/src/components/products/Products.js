@@ -2,14 +2,13 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Card } from "antd";
-import { EditOutlined, DeleteOutlined, HeartOutlined } from "@ant-design/icons";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 const { Meta } = Card;
 
 const Products = () => {
   const [Products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const { id } = useParams();
   console.log(id);
 
@@ -33,10 +32,12 @@ const Products = () => {
   return (
     <div
       style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gridGap: "10px",
-        padding: 15,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        marginTop: 100,
+        padding: "50px",
       }}
     >
       {Products.length === 0 ? (
@@ -44,26 +45,33 @@ const Products = () => {
       ) : (
         Products.map((oneProduct, index) => {
           return (
-            <div style={{ padding: 15 }} key={index}>
+            <div
+              style={{
+                alignItems: "center",
+                width: "25%",
+                justifyContent: "center",
+                marginRight: "10px",
+              }}
+              key={index}
+            >
               <Card
                 style={{
                   width: 300,
                   padding: 20,
                 }}
-                cover={<img   onClick={()=>{
-                    navigate(`/productById/${oneProduct._id}`)
-                  }} src={oneProduct.img}  />}
-                actions={[
-                  <DeleteOutlined key="delete" />,
-                  <EditOutlined key="edit" />,
-                  <HeartOutlined key="favorite" />,
-                ]}
+                cover={
+                  <img
+                    onClick={() => {
+                      navigate(`/productById/${oneProduct._id}`);
+                    }}
+                    src={oneProduct.img}
+                  />
+                }
               >
                 <Meta
                   title={oneProduct.title}
                   description={oneProduct.description}
                 />
-               
               </Card>
             </div>
           );

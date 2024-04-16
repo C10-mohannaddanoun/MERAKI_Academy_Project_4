@@ -41,6 +41,7 @@ const login = (req, res) => {
   userModel
     .findOne({ email })
     .populate("role")
+    .populate("fav")
     .then(async (result) => {
       if (!result) {
         return res.status(403).json({
@@ -70,6 +71,7 @@ const login = (req, res) => {
           success: true,
           message: `Valid login credentials`,
           token: token,
+          fav:result.fav
         });
       } catch (error) {
         throw new Error(error.message);
@@ -92,6 +94,7 @@ const addFav = (req, res) => {
 
   userModel
     .findByIdAndUpdate({ _id: id }, { $push: { fav: Fav } }, { new: true })
+    .populate("fav")
     .then((result) => {
       console.log(result);
       res.status(200).json({
@@ -132,4 +135,29 @@ const removeFav = (req, res) => {
     });
 };
 
-module.exports = { register, login, addFav, removeFav };
+// ************************************************************************************************************
+const getFav = (req, res) => {
+  const id = req.token.UserId;
+  
+
+  userModel
+  .findById({ _id: id })
+  .populate("fav")
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({
+        success: true,
+        message: `The fav products`,
+        fav:result.fav
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `server error`,
+        err: err.message,
+      });
+    });
+};
+
+module.exports = { register, login, addFav, removeFav,getFav };

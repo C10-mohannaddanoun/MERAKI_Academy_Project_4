@@ -78,7 +78,16 @@ const Register = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 100,
+        margin: 100,
+        border:"solid",
+        height:"400px",
+        width:"500px",
+        marginLeft:"400px",
+        marginTop:"150px",
+        marginBottom:"100px",
+        backgroundColor:"ButtonShadow",
+        borderRadius:"30px",
+        padding:"100px"
       }}
     >
       {contextHolder}
